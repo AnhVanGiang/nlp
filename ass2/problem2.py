@@ -18,7 +18,7 @@ word_index_dict = {k.rstrip(): v for v, k in enumerate(open('brown_vocab_100.txt
 counts = np.zeros((len(word_index_dict)))
 with open('brown_100.txt', encoding='utf-8') as f:
     for line in f:
-        counts += np.bincount([word_index_dict[_.lower()] for _ in line.split()], minlength=len(word_index_dict))
+        np.add.at(counts, [word_index_dict[_.lower()] for _ in line.split()], 1)
 
 #TODO: normalize and writeout counts. 
 probs = counts/np.sum(counts)
