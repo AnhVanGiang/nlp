@@ -13,9 +13,8 @@ counts = np.zeros((len(word_index_dict), len(word_index_dict))) + 0.1
 
 f = codecs.open("brown_100.txt")
 for l in f.read().splitlines():
-    words = [i.lower() for i in l.split()]
-    indices = np.apply_along_axis(lambda x: np.array([word_index_dict[i] for i in x]), 1, 
-                                  np.lib.stride_tricks.sliding_window_view(np.array(words), 2))
+    indices = np.apply_along_axis(lambda x: np.array([word_index_dict[i.lower()] for i in x]), 1, 
+                                  np.lib.stride_tricks.sliding_window_view(np.array(l.split()), 2))
     # print(indices)
     np.add.at(counts, (indices[:, 0], indices[:, 1]), 1)
 
