@@ -8,11 +8,14 @@ NLP A2: N-Gram Language Models
 DO NOT SHARE/DISTRIBUTE SOLUTIONS WITHOUT THE INSTRUCTOR'S PERMISSION
 """
 
-word_index_dict = {}
+
 
 # TODO: read brown_vocab_100.txt into word_index_dict
-
+word_index_dict = {k.rstrip(): v for v, k in enumerate(open('brown_vocab_100.txt', encoding='utf-8').read().splitlines())}
 # TODO: write word_index_dict to word_to_index_100.txt
+with open('word_to_index_100.txt', 'w', encoding='utf-8') as f:
+    for k, v in word_index_dict.items():
+        f.write(f'{k}\t{v}\n')
 
 
 
